@@ -22,4 +22,13 @@ class Gossip
       gossips = self.all
       gossips[id.to_i]
     end
+
+    def self.update(new_author, new_content, id)
+      gossips = self.all
+      gossips[id].auteur = new_author
+      gossips[id].content = new_content
+      CSV.open("db/gossip.csv", "w") { |csv| }
+      CSV.open("db/gossip.csv", "w") { |csv| gossips.each { |gossip| gossip.save }}
+    end
+  
 end
